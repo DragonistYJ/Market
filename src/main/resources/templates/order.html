@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin by Bootstrapious.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="css/fontastic.css">
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <nav class="navbar">
+            <!-- Search Box-->
+            <div class="search-box">
+                <button class="dismiss"><i class="icon-close"></i></button>
+                <form id="searchForm" action="#" role="search">
+                    <input type="search" placeholder="What are you looking for..." class="form-control">
+                </form>
+            </div>
+            <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <!-- Navbar Header-->
+                    <div class="navbar-header">
+                        <!-- Navbar Brand --><a href="/index" class="navbar-brand d-none d-sm-inline-block">
+                        <div class="brand-text d-none d-lg-inline-block">
+                            <strong>Ecommerce</strong></div>
+                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div>
+                    </a>
+                        <!-- Toggle Button--><a id="toggle-btn" href="#"
+                                                class="menu-btn active"><span></span><span></span><span></span></a>
+                    </div>
+                    <!-- Navbar Menu -->
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                        <!-- Search-->
+                        <li class="nav-item d-flex align-items-center">
+                            <a id="search" href="#"><i class="icon-search"></i></a>
+                        </li>
+                        <li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#"
+                                                         data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false" class="nav-link"><i
+                                class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                        </li>
+                        <li class="nav-item dropdown"><a id="messages" rel="nofollow" data-target="#" href="#"
+                                                         data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false" class="nav-link"><i
+                                class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner">10</span></a>
+                        </li>
+
+                        <!-- Logout-->
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link logout">
+                                <span class="d-none d-sm-inline">下线</span><i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page-content d-flex align-items-stretch">
+        <nav class="side-navbar">
+
+            <div class="sidebar-header d-flex align-items-center" id="admin">
+                <div class="avatar"><img v-bind:src="portrait" class="img-fluid rounded-circle"></div>
+                <div class="title">
+                    <h1 class="h4">{{name}}</h1>
+                    <p>{{level}}级管理员</p>
+                </div>
+            </div>
+
+            <!--主菜单-->
+            <span class="heading">主菜单</span>
+            <ul class="list-unstyled">
+                <li><a href="/index"> <i class="icon-home"></i>概览</a></li>
+                <li><a href="/product"> <i class="icon-grid"></i>商品库存</a></li>
+                <li><a href="/customer"> <i class="fa fa-bar-chart"></i>客户信息</a></li>
+                <li class="active"><a href="/order"> <i class="icon-padnote"></i>订单管理</a></li>
+            </ul>
+        </nav>
+        <div class="content-inner" id="order">
+            <!-- Page Header-->
+            <header class="page-header">
+                <div class="container-fluid">
+                    <h2 class="no-margin-bottom">订单管理控制台</h2>
+                </div>
+            </header>
+
+            <div class="row">
+                <div class="col-lg-10 offset-sm-1">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <div class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" class="nav-link">
+                                    <i class="fa fa-calendar-check-o" style="color: #725411"></i>
+                                    <span class="badge bg-red badge-info">时间</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item" v-on:click="chooseTime(1)">
+                                        <span style="padding-bottom: 4px">起始时间</span><br>
+                                        <input id="startTime" type="date" value="2000-01-01"
+                                               style="border-radius: 10px; border-color: #725411; padding: 4px 4px 4px 4px"/>
+                                    </li>
+                                    <li class="dropdown-item" v-on:click="chooseTime(2)">
+                                        <span style="padding-bottom: 4px">结束时间</span><br>
+                                        <input id="endTime" type="date" value="3000-12-12"
+                                               style="border-radius: 10px; border-color: #725411; padding: 4px 4px 4px 4px"/>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <button type="button" class="btn btn-success" v-on:click="chooseTime()">确定</button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-left: 40px; width: 25%">
+                                <label for="buyerInput">搜索用户</label>
+                                <input id="buyerInput" type="text" placeholder="搜索"
+                                       style="border-radius: 18px; outline: none; border: 1px solid #cccccc; padding: 4px 0 4px 20px; font-size: 15px; width: 70%">
+                                <i class="icon-search" style="cursor: pointer" v-on:click="getOrdersByBuyer()"></i>
+                            </div>
+
+                            <div style="margin-left: 40px; width: 25%">
+                                <label for="productInput">搜索商品</label>
+                                <input id="productInput" type="text" placeholder="搜索"
+                                       style="border-radius: 18px; outline: none; border: 1px solid #cccccc; padding: 4px 0 4px 20px; font-size: 15px; width: 70%">
+                                <i class="icon-search" style="cursor: pointer" v-on:click="getOrdersByProduct()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="projects" style="padding-top: 20px">
+                <div class="container-fluid col-lg-9">
+                    <div class="project" v-for="order in orders">
+                        <div class="row bg-white has-shadow">
+                            <div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
+                                <div class="project-title d-flex align-items-center">
+                                    <div class="image has-shadow">
+                                        <img v-bind:src="order.img" class="img-fluid">
+                                    </div>
+                                    <div class="text">
+                                        <h4 class="h4">{{order.productName}}</h4>
+                                        <small>下单人:{{order.buyerName}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="left-col col-lg-2 d-flex align-items-center">
+                                <div class="project-date align-items-center">
+                                    <span class="hidden-sm-down"><i class="fa fa-clock-o"></i>下单时间</span><br>
+                                    <span class="hidden-sm-down">{{order.createTime}}</span>
+                                </div>
+                            </div>
+                            <div class="left-col col-lg-1 d-flex align-items-center">
+                                <div class="project-date align-items-center">
+                                    <span class="hidden-sm-down"><i class="fa fa-money"></i>金额</span><br>
+                                    <span class="hidden-sm-down">{{order.price}}</span>
+                                </div>
+                            </div>
+                            <div class="left-col col-lg-1 d-flex align-items-center">
+                                <div class="project-date align-items-center">
+                                    <span class="hidden-sm-down"><i class="fa fa-sort-amount-desc"></i>数量</span><br>
+                                    <span class="hidden-sm-down">{{order.quantity}}</span>
+                                </div>
+                            </div>
+                            <div class="left-col col-lg-1 d-flex align-items-center">
+                                <div class="project-date align-items-center">
+                                    <span class="hidden-sm-down"><i class="fa fa-sort-amount-desc"></i>状态</span><br>
+                                    <span class="hidden-sm-down">{{order.state}}</span>
+                                </div>
+                            </div>
+                            <div class="right-col col-lg-2 d-flex align-items-center">
+                                <div class="project-date align-items-center">
+                                    <button class="btn btn-info" type="button" v-on:click="orderClick(order.oId)">查看详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="main-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>四川大学软件学院 &copy; 2019</p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <p>陶洪元 唐郅杰 刘雨欣 王新宇 余坚</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.staticfile.org/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
+<script src="https://cdn.staticfile.org/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="js/front.js"></script>
+<script src="js/order.js"></script>
+</body>
+</html>

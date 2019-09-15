@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ecommerce</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/fontastic.css">
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="info d-flex align-items-center">
+                        <div class="content">
+                            <div class="logo">
+                                <h1>Ecommerce</h1>
+                            </div>
+                            <p>管理员安全登录系统</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Panel    -->
+                <div class="col-lg-6 bg-white">
+                    <div class="form d-flex align-items-center">
+                        <div class="content" id="login">
+                            <form class="form-validate">
+                                <div class="form-group">
+                                    <input id="login-username" type="text" required class="input-material">
+                                    <label for="login-username" class="label-material">请输入您的用户名</label>
+                                </div>
+                                <div class="form-group">
+                                    <input id="login-password" type="password" required class="input-material">
+                                    <label for="login-password" class="label-material">请输入您的密码</label>
+                                </div>
+                                <button class="btn btn-primary" type="button" v-on:click="login()">管理员登录</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyrights text-center">
+        <p>四川大学&nbsp;<span style="color: mediumpurple">陶洪元 唐郅杰 刘雨欣 王新宇 余坚</span></p>
+    </div>
+</div>
+
+<script src="https://cdn.staticfile.org/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="js/front.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

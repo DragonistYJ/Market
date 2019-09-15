@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+
+    <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/bootstrap-fileinput/5.0.0/css/fileinput.min.css">
+    <link rel="stylesheet" href="css/fontastic.css">
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.min.js"></script>
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <nav class="navbar">
+            <!-- Search Box-->
+            <div class="search-box">
+                <button class="dismiss"><i class="icon-close"></i></button>
+                <form id="searchForm" action="#" role="search">
+                    <input type="search" placeholder="What are you looking for..." class="form-control">
+                </form>
+            </div>
+            <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <!-- Navbar Header-->
+                    <div class="navbar-header">
+                        <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                        <div class="brand-text d-none d-lg-inline-block">
+                            <strong>Ecommerce</strong></div>
+                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div>
+                    </a>
+                        <!-- Toggle Button--><a id="toggle-btn" href="#"
+                                                class="menu-btn active"><span></span><span></span><span></span></a>
+                    </div>
+                    <!-- Navbar Menu -->
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                        <!-- Search-->
+                        <li class="nav-item d-flex align-items-center">
+                            <a id="search" href="#"><i class="icon-search"></i></a>
+                        </li>
+                        <li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#"
+                                                         data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false" class="nav-link"><i
+                                class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                        </li>
+                        <li class="nav-item dropdown"><a id="messages" rel="nofollow" data-target="#" href="#"
+                                                         data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false" class="nav-link"><i
+                                class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner">10</span></a>
+                        </li>
+
+                        <!-- Logout-->
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link logout">
+                                <span class="d-none d-sm-inline">下线</span><i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page-content d-flex align-items-stretch">
+        <nav class="side-navbar">
+
+            <div class="sidebar-header d-flex align-items-center" id="admin">
+                <div class="avatar"><img v-bind:src="portrait" class="img-fluid rounded-circle"></div>
+                <div class="title">
+                    <h1 class="h4">{{name}}</h1>
+                    <p>{{level}}级管理员</p>
+                </div>
+            </div>
+
+            <!--主菜单-->
+            <span class="heading">主菜单</span>
+            <ul class="list-unstyled">
+                <li><a href="/index"> <i class="icon-home"></i>概览</a></li>
+                <li class="active"><a href="/product"> <i class="icon-grid"></i>商品库存</a></li>
+                <li><a href="/customer"> <i class="fa fa-bar-chart"></i>客户信息</a></li>
+                <li><a href="/order"> <i class="icon-padnote"></i>订单管理</a></li>
+            </ul>
+        </nav>
+        <div class="content-inner" id="productInfo">
+
+            <header class="page-header">
+                <div class="container-fluid">
+                    <h2 class="no-margin-bottom">{{name}}</h2>
+                </div>
+            </header>
+
+            <section class="forms" style="margin-top: 8px; padding-top: 8px">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form class="form-horizontal">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">商品编号</span>
+                                            </label>
+                                            <div class="col-sm-9">{{spId}}</div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">商品名称</span>
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="nameInput" maxlength="255" required>
+                                                <small class="help-block-none">255字节内</small>
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">库存余量</span>
+                                            </label>
+                                            <div class="col-sm-2">
+                                                <input type="number" class="form-control" id="inventoryInput" min="0" required>
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">价格（人民币·元）</span>
+                                            </label>
+                                            <div class="col-sm-2">
+                                                <input type="number" class="form-control" id="priceInput" min="0" required>
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">商品品牌</span>
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" id="brandInput" required>
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">选择类别</span>
+                                            </label>
+                                            <div class="col-sm-2">
+                                                <select class="form-control mb-3" id="categorySelect">
+                                                    <option value="top">上装</option>
+                                                    <option value="bottom">下装</option>
+                                                    <option value="shoe">鞋子</option>
+                                                    <option value="acc">饰品</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">选择适合人群</span>
+                                            </label>
+                                            <div class="col-sm-2">
+                                                <select class="form-control mb-3" id="crowedSelect">
+                                                    <option value="male">男装</option>
+                                                    <option value="female">女装</option>
+                                                    <option value="teenager">青少年</option>
+                                                    <option value="child">儿童</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">选择商品可选尺码</span>
+                                            </label>
+                                            <div class="col-sm-2">
+                                                <input type="checkbox" value="30" name="size"><label>&nbsp;30</label>
+                                                <input type="checkbox" value="31" name="size"><label>&nbsp;31</label>
+                                                <input type="checkbox" value="32" name="size"><label>&nbsp;32</label><br>
+                                                <input type="checkbox" value="33" name="size"><label>&nbsp;33</label>
+                                                <input type="checkbox" value="34" name="size"><label>&nbsp;34</label>
+                                                <input type="checkbox" value="35" name="size"><label>&nbsp;35</label><br>
+                                                <input type="checkbox" value="36" name="size"><label>&nbsp;36</label>
+                                                <input type="checkbox" value="37" name="size"><label>&nbsp;37</label>
+                                                <input type="checkbox" value="38" name="size"><label>&nbsp;38</label><br>
+                                                <input type="checkbox" value="39" name="size"><label>&nbsp;39</label>
+                                                <input type="checkbox" value="40" name="size"><label>&nbsp;40</label>
+                                                <input type="checkbox" value="41" name="size"><label>&nbsp;41</label><br>
+                                                <input type="checkbox" value="42" name="size"><label>&nbsp;42</label>
+                                                <input type="checkbox" value="43" name="size"><label>&nbsp;43</label>
+                                                <input type="checkbox" value="44" name="size"><label>&nbsp;44</label><br>
+                                                <input type="checkbox" value="45" name="size"><label>&nbsp;45</label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="checkbox" value="S" name="size"><label>&nbsp;S</label><br>
+                                                <input type="checkbox" value="M" name="size"><label>&nbsp;M</label><br>
+                                                <input type="checkbox" value="X" name="size"><label>&nbsp;X</label><br>
+                                                <input type="checkbox" value="XL" name="size"><label>&nbsp;XL</label><br>
+                                                <input type="checkbox" value="XXL" name="size"><label>&nbsp;XXL</label><br>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="checkbox" value="4C" name="size"><label>&nbsp;4C</label><br>
+                                                <input type="checkbox" value="5C" name="size"><label>&nbsp;5C</label><br>
+                                                <input type="checkbox" value="6C" name="size"><label>&nbsp;6C</label><br>
+                                                <input type="checkbox" value="7C" name="size"><label>&nbsp;7C</label><br>
+                                                <input type="checkbox" value="8C" name="size"><label>&nbsp;8C</label><br>
+                                                <input type="checkbox" value="9C" name="size"><label>&nbsp;9C</label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="checkbox" value="均码" name="size"><label>&nbsp;均码</label><br>
+                                                <input type="checkbox" value="标准码" name="size"><label>&nbsp;标准码</label><br>
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">填写商品的描述</span><br>
+                                                <small class="text-primary">5000字以内</small>
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <textarea maxlength="5000" aria-multiline="true"
+                                                          class="form-control" id="descriptionInput"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">已有图片</span><br>
+                                            </label>
+                                            <div class="col-sm-2">
+                                                <img v-bind:src="img1" style="width: 200px; height: 126px">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <img v-bind:src="img2" style="width: 200px; height: 126px">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <img v-bind:src="img3" style="width: 200px; height: 126px">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <img v-bind:src="img4" style="width: 200px; height: 126px">
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row" id="imgBox">
+                                            <label class="col-sm-3 form-control-label">
+                                                <span style="font-size: 20px">上传图片</span><br>
+                                                <small class="text-primary">最多4张，会覆盖</small>
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="file" multiple class="file" id="pictureInput">
+                                            </div>
+                                        </div>
+                                        <div class="line"></div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 offset-sm-3">
+                                                <button type="button" class="btn btn-primary" v-on:click="upload()">保存</button>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <button type="button" class="btn btn-danger" v-on:click="deleteProduct()">删除</button>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <button type="button" class="btn btn-secondary" v-on:click="cancel()">取消</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="main-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>四川大学软件学院 &copy; 2019</p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <p>陶洪元 唐郅杰 刘雨欣 王新宇 余坚</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.staticfile.org/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdn.staticfile.org/bootstrap-fileinput/5.0.0/js/fileinput.min.js"></script>
+<script src="https://cdn.staticfile.org/bootstrap-fileinput/5.0.0/js/plugins/piexif.min.js"></script>
+<script src="https://cdn.staticfile.org/bootstrap-fileinput/5.0.0/js/locales/zh.min.js"></script>
+<script src="js/front.js"></script>
+<script src="js/productInformation.js"></script>
+
+</body>
+</html>
